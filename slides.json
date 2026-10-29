@@ -1,0 +1,247 @@
+{
+  "title": "AI Slasher 訓練營｜銷售互動 Deck",
+  "brand": "StartFree",
+  "locale": "zh-HK",
+  "stage": { "width": 1920, "height": 1080 },
+  "html": { "url": "index.html" },
+  "theme": {
+    "bg": "#0B1F3A",
+    "accent": "#D4A017",
+    "accentBright": "#F5C84C",
+    "text": "#FFFFFF",
+    "muted": "#A8C0D8",
+    "cyan": "#7EC8E3",
+    "fonts": ["Noto Sans HK", "Outfit"]
+  },
+  "cta": {
+    "sales": { "url": "https://startfree.io/", "label": "立即加入訓練營" },
+    "youtube": { "url": "https://www.youtube.com/@StartFree", "label": "訂閱 StartFree" }
+  },
+  "slides": [
+    {
+      "id": "cover",
+      "kind": "visual",
+      "title": "封面：AI Slasher 訓練營",
+      "html": { "url": "index.html", "page": 1 },
+      "overlays": [],
+      "audienceElements": []
+    },
+    {
+      "id": "join",
+      "kind": "visual",
+      "title": "入場玩法：跟大屏",
+      "html": { "url": "index.html", "page": 2 },
+      "overlays": [
+        {
+          "id": "join-overlay",
+          "type": "join",
+          "frame": { "x": 55, "y": 28, "width": 38, "height": 48 },
+          "style": {
+            "text": "#FFFFFF",
+            "panel": "rgba(18,42,74,0.85)",
+            "accent": "#F5C84C"
+          }
+        }
+      ],
+      "audienceElements": []
+    },
+    {
+      "id": "dream",
+      "kind": "visual",
+      "title": "開場鉤｜夢想：把時間搶返嚟",
+      "html": { "url": "index.html", "page": 3 },
+      "overlays": [],
+      "audienceElements": []
+    },
+    {
+      "id": "pain",
+      "kind": "visual",
+      "title": "痛點：堆喺自己身上",
+      "html": { "url": "index.html", "page": 4 },
+      "overlays": [],
+      "audienceElements": []
+    },
+    {
+      "id": "poll-pain",
+      "kind": "visual",
+      "title": "Poll：你而家最痛係？",
+      "html": { "url": "index.html", "page": 5 },
+      "overlays": [
+        {
+          "id": "poll-pain-overlay",
+          "type": "poll",
+          "question": "你而家最痛係？",
+          "options": [
+            "時間——日日親力親為",
+            "內容——產同回覆追唔切",
+            "請人——貴、慢、風險高",
+            "唔知點開始——識聽唔落地"
+          ],
+          "frame": { "x": 8, "y": 62, "width": 55, "height": 28 },
+          "style": {
+            "text": "#FFFFFF",
+            "panel": "rgba(18,42,74,0.9)",
+            "accent": "#D4A017"
+          }
+        }
+      ],
+      "audienceElements": []
+    },
+    {
+      "id": "know-vs-use",
+      "kind": "visual",
+      "title": "「識 AI」vs「用得住」",
+      "html": { "url": "index.html", "page": 6 },
+      "overlays": [],
+      "audienceElements": []
+    },
+    {
+      "id": "solution",
+      "kind": "visual",
+      "title": "方案一句：老闆 AI／Grok 作業系統",
+      "html": { "url": "index.html", "page": 7 },
+      "overlays": [],
+      "audienceElements": []
+    },
+    {
+      "id": "levels-overview",
+      "kind": "visual",
+      "title": "三 Level 總覽",
+      "html": { "url": "index.html", "page": 8 },
+      "overlays": [],
+      "audienceElements": []
+    },
+    {
+      "id": "levels-detail",
+      "kind": "visual",
+      "title": "Level 細節卡",
+      "html": { "url": "index.html", "page": 9 },
+      "overlays": [],
+      "audienceElements": []
+    },
+    {
+      "id": "membership",
+      "kind": "visual",
+      "title": "會籍包含：社群／直播／諮詢",
+      "html": { "url": "index.html", "page": 10 },
+      "overlays": [],
+      "audienceElements": []
+    },
+    {
+      "id": "price",
+      "kind": "visual",
+      "title": "價格錨定 8800→4800",
+      "html": { "url": "index.html", "page": 11 },
+      "overlays": [],
+      "audienceElements": []
+    },
+    {
+      "id": "prompt-90d",
+      "kind": "visual",
+      "title": "Prompt：90 日最想改善 1 件事",
+      "html": { "url": "index.html", "page": 12 },
+      "overlays": [
+        {
+          "id": "prompt-90d-overlay",
+          "type": "prompt",
+          "question": "90 日最想改善 1 件事？",
+          "placeholder": "我 90 日最想……（一句就得）",
+          "frame": { "x": 10, "y": 58, "width": 50, "height": 28 },
+          "style": {
+            "text": "#FFFFFF",
+            "panel": "rgba(18,42,74,0.9)",
+            "accent": "#F5C84C"
+          }
+        }
+      ],
+      "audienceElements": []
+    },
+    {
+      "id": "fit",
+      "kind": "visual",
+      "title": "適合／唔適合（誠實邊界）",
+      "html": { "url": "index.html", "page": 13 },
+      "overlays": [],
+      "audienceElements": []
+    },
+    {
+      "id": "checklist",
+      "kind": "visual",
+      "title": "帶走：本週 AI 作業系統啟動 Checklist",
+      "html": { "url": "index.html", "page": 14 },
+      "overlays": [],
+      "audienceElements": [
+        {
+          "id": "copy-checklist",
+          "type": "copy",
+          "title": "本週 AI 作業系統啟動 Checklist",
+          "buttonLabel": "一鍵複製 Prompt",
+          "content": "【本週 AI 作業系統啟動 Checklist｜StartFree AI Slasher】\n\n1) 定 1 個你每週重複做、最想交俾 AI 嘅任務（寫清楚：輸入→輸出）。\n2) 寫低你嘅老闆語氣 5 句（點樣講、點樣唔講）。\n3) 喺日曆鎖 1 個固定時段（最少 45 分鐘）做 AI 練習。\n4) 開一個「AI 作業」資料夾，放模板、對話、成品。\n5) 列出 3 個可自動化流程（通知／收集／跟進）。\n6) 約自己 7 日後 review：邊項用得住？邊項要改？\n\n一句目標：我唔係追工具，我係裝一套每週用得住嘅老闆 AI 作業系統。\nCTA：https://startfree.io/ ｜ YouTube @StartFree"
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "kind": "visual",
+      "title": "最終 CTA：報名 + YouTube",
+      "html": { "url": "index.html", "page": 15 },
+      "overlays": [],
+      "audienceElements": [
+        {
+          "id": "link-sales",
+          "type": "link",
+          "title": "AI Slasher 訓練營",
+          "url": "https://startfree.io/",
+          "description": "1 年 AI 會籍 · 限時 HK$4,800 · 7 日無條件退款",
+          "buttonLabel": "立即加入訓練營"
+        },
+        {
+          "id": "link-youtube",
+          "type": "link",
+          "title": "StartFree YouTube",
+          "url": "https://www.youtube.com/@StartFree",
+          "description": "免費跟住學 · 訂閱 @StartFree",
+          "buttonLabel": "訂閱 StartFree"
+        }
+      ]
+    },
+    {
+      "id": "thanks",
+      "kind": "visual",
+      "title": "多謝／Q&A",
+      "html": { "url": "index.html", "page": 16 },
+      "overlays": [
+        {
+          "id": "prompt-qa-overlay",
+          "type": "prompt",
+          "question": "現場問題（審批後上大屏）",
+          "placeholder": "我想問……",
+          "frame": { "x": 10, "y": 62, "width": 48, "height": 26 },
+          "style": {
+            "text": "#FFFFFF",
+            "panel": "rgba(18,42,74,0.9)",
+            "accent": "#D4A017"
+          }
+        }
+      ],
+      "audienceElements": [
+        {
+          "id": "link-sales-thanks",
+          "type": "link",
+          "title": "報名銷售頁",
+          "url": "https://startfree.io/",
+          "description": "立即加入 AI Slasher 訓練營",
+          "buttonLabel": "立即加入訓練營"
+        },
+        {
+          "id": "link-youtube-thanks",
+          "type": "link",
+          "title": "YouTube @StartFree",
+          "url": "https://www.youtube.com/@StartFree",
+          "description": "訂閱頻道繼續學",
+          "buttonLabel": "訂閱 StartFree"
+        }
+      ]
+    }
+  ]
+}
