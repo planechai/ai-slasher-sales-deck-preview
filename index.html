@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>AI Slasher 訓練營｜銷售互動 Deck</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,6 +19,8 @@
     --cyan: #7EC8E3;
     --danger: #E85D5D;
     --ok: #3DDC97;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
@@ -28,11 +30,14 @@
     font-family: "Noto Sans HK", system-ui, sans-serif;
     color: var(--white);
   }
-  .viewport {
+  a { color: inherit; }
+
+  /* ========== PRESENT (projector 1920×1080) ========== */
+  body.mode-present .viewport {
     width: 100vw; height: 100vh;
     display: flex; align-items: center; justify-content: center;
   }
-  .stage {
+  body.mode-present .stage {
     width: 1920px; height: 1080px;
     position: relative;
     transform-origin: center center;
@@ -40,7 +45,7 @@
     box-shadow: 0 0 80px rgba(0,0,0,.55);
     overflow: hidden;
   }
-  .stage::before {
+  body.mode-present .stage::before {
     content: "";
     position: absolute; inset: 0;
     background:
@@ -48,55 +53,55 @@
       radial-gradient(ellipse 60% 40% at -5% 100%, rgba(126,200,227,.08), transparent 50%);
     pointer-events: none;
   }
-  .slide {
+  body.mode-present .slide {
     position: absolute; inset: 0;
     display: none;
-    padding: 72px 96px 100px;
+    padding: 72px 96px 120px;
     flex-direction: column;
   }
-  .slide.active { display: flex; }
-  .eyebrow {
+  body.mode-present .slide.active { display: flex; }
+  body.mode-present .eyebrow {
     font-family: Outfit, "Noto Sans HK", sans-serif;
     font-size: 22px; font-weight: 700;
     letter-spacing: .12em; text-transform: uppercase;
     color: var(--gold-bright);
     margin-bottom: 20px;
   }
-  h1 {
+  body.mode-present h1 {
     font-family: Outfit, "Noto Sans HK", sans-serif;
     font-size: 72px; font-weight: 800; line-height: 1.15;
     letter-spacing: -.01em;
     max-width: 1500px;
   }
-  h1 .gold { color: var(--gold-bright); }
-  h2 {
+  body.mode-present h1 .gold { color: var(--gold-bright); }
+  body.mode-present h2 {
     font-family: Outfit, "Noto Sans HK", sans-serif;
     font-size: 56px; font-weight: 800; line-height: 1.2;
     max-width: 1500px;
   }
-  .lead {
+  body.mode-present .lead {
     margin-top: 28px;
     font-size: 32px; font-weight: 500; line-height: 1.55;
     color: var(--muted); max-width: 1400px;
   }
-  .accent-bar {
+  body.mode-present .accent-bar {
     width: 96px; height: 6px;
     background: linear-gradient(90deg, var(--gold), var(--gold-bright));
     border-radius: 3px;
     margin: 28px 0 8px;
   }
-  .footer {
-    position: absolute; left: 96px; right: 96px; bottom: 36px;
+  body.mode-present .footer {
+    position: absolute; left: 96px; right: 220px; bottom: 36px;
     display: flex; justify-content: space-between; align-items: center;
     font-family: Outfit, sans-serif;
     font-size: 18px; color: var(--muted); letter-spacing: .04em;
   }
-  .footer .brand { color: var(--gold); font-weight: 700; }
-  .nav {
+  body.mode-present .footer .brand { color: var(--gold); font-weight: 700; }
+  body.mode-present .nav {
     position: absolute; right: 40px; bottom: 28px; z-index: 20;
     display: flex; gap: 12px; align-items: center;
   }
-  .nav button {
+  body.mode-present .nav button {
     min-width: 56px; height: 48px; padding: 0 16px;
     border: 1px solid rgba(245,200,76,.35);
     background: rgba(11,31,58,.85);
@@ -104,42 +109,49 @@
     font-family: Outfit, sans-serif; font-size: 20px; font-weight: 700;
     border-radius: 10px; cursor: pointer;
   }
-  .nav button:hover { background: rgba(212,160,23,.2); }
-  .nav .page-label {
+  body.mode-present .nav button:hover { background: rgba(212,160,23,.2); }
+  body.mode-present .nav .page-label {
     font-family: Outfit, sans-serif;
     font-size: 18px; color: var(--muted); min-width: 72px; text-align: center;
   }
 
-  /* cards / lists */
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-top: 40px; }
-  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; margin-top: 40px; }
-  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 24px; margin-top: 40px; }
-  .card {
+  body.mode-present .mode-toggle.present-only {
+    position: absolute; left: 40px; top: 20px; z-index: 30;
+    font-size: 14px; color: var(--muted); text-decoration: none;
+    opacity: .55;
+  }
+  body.mode-present .mode-toggle.present-only:hover { opacity: 1; color: var(--gold-bright); }
+  body.mode-view .nav-controls { display: flex; gap: 10px; align-items: center; }
+  body.mode-present .view-only { display: none !important; }
+  body.mode-present .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-top: 40px; }
+  body.mode-present .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; margin-top: 40px; }
+  body.mode-present .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 24px; margin-top: 40px; }
+  body.mode-present .card {
     background: rgba(18,42,74,.72);
     border: 1px solid rgba(245,200,76,.22);
     border-radius: 20px;
     padding: 36px 32px;
   }
-  .card h3 {
+  body.mode-present .card h3 {
     font-family: Outfit, "Noto Sans HK", sans-serif;
     font-size: 30px; font-weight: 800; color: var(--gold-bright);
     margin-bottom: 14px;
   }
-  .card p, .card li {
+  body.mode-present .card p, body.mode-present .card li {
     font-size: 24px; line-height: 1.5; color: var(--muted);
   }
-  .card ul { list-style: none; }
-  .card li { padding: 6px 0 6px 28px; position: relative; }
-  .card li::before {
+  body.mode-present .card ul { list-style: none; }
+  body.mode-present .card li { padding: 6px 0 6px 28px; position: relative; }
+  body.mode-present .card li::before {
     content: ""; position: absolute; left: 0; top: 16px;
     width: 12px; height: 12px; border-radius: 50%;
     background: var(--gold);
   }
-  .pain-list {
+  body.mode-present .pain-list {
     margin-top: 36px; list-style: none;
     display: flex; flex-direction: column; gap: 20px;
   }
-  .pain-list li {
+  body.mode-present .pain-list li {
     font-size: 36px; font-weight: 700; line-height: 1.35;
     padding: 22px 28px 22px 72px;
     background: rgba(18,42,74,.55);
@@ -147,15 +159,15 @@
     border-radius: 0 14px 14px 0;
     position: relative;
   }
-  .pain-list li .num {
+  body.mode-present .pain-list li .num {
     position: absolute; left: 22px; top: 50%; transform: translateY(-50%);
     font-family: Outfit, sans-serif; font-size: 28px; color: var(--gold-bright);
   }
-  .vs-row {
+  body.mode-present .vs-row {
     display: grid; grid-template-columns: 1fr auto 1fr; gap: 28px;
     align-items: stretch; margin-top: 48px;
   }
-  .vs-badge {
+  body.mode-present .vs-badge {
     align-self: center;
     width: 72px; height: 72px; border-radius: 50%;
     background: linear-gradient(135deg, var(--gold), var(--gold-bright));
@@ -163,44 +175,42 @@
     font-size: 22px; font-weight: 800;
     display: flex; align-items: center; justify-content: center;
   }
-  .vs-card.bad { border-color: rgba(232,93,93,.35); }
-  .vs-card.bad h3 { color: #FF9B9B; }
-  .vs-card.good { border-color: rgba(61,220,151,.35); }
-  .vs-card.good h3 { color: var(--ok); }
-  .level-card .lvl {
+  body.mode-present .vs-card.bad { border-color: rgba(232,93,93,.35); }
+  body.mode-present .vs-card.bad h3 { color: #FF9B9B; }
+  body.mode-present .vs-card.good { border-color: rgba(61,220,151,.35); }
+  body.mode-present .vs-card.good h3 { color: var(--ok); }
+  body.mode-present .level-card .lvl {
     font-family: Outfit, sans-serif; font-size: 18px; letter-spacing: .1em;
     color: var(--cyan); margin-bottom: 10px; font-weight: 700;
   }
-  .level-card h3 { font-size: 34px; }
-  .price-wrap {
+  body.mode-present .level-card h3 { font-size: 34px; }
+  body.mode-present .price-wrap {
     margin-top: 48px; display: flex; align-items: flex-end; gap: 48px;
   }
-  .price-old {
+  body.mode-present .price-old {
     font-family: Outfit, sans-serif;
     font-size: 48px; color: var(--muted); text-decoration: line-through;
   }
-  .price-new {
+  body.mode-present .price-new {
     font-family: Outfit, sans-serif;
     font-size: 96px; font-weight: 800; color: var(--gold-bright); line-height: 1;
   }
-  .price-note {
+  body.mode-present .price-note {
     margin-top: 28px; font-size: 28px; color: var(--muted);
   }
-  .badge-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
-  .badge {
+  body.mode-present .badge-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
+  body.mode-present .badge {
     padding: 12px 22px; border-radius: 999px;
     border: 1px solid rgba(245,200,76,.4);
     background: rgba(212,160,23,.12);
     font-size: 22px; font-weight: 700; color: var(--gold-bright);
   }
-  .fit-grid .card.no {
-    border-color: rgba(168,192,216,.25);
-  }
-  .fit-grid .card.no h3 { color: var(--muted); }
-  .cta-row {
+  body.mode-present .fit-grid .card.no { border-color: rgba(168,192,216,.25); }
+  body.mode-present .fit-grid .card.no h3 { color: var(--muted); }
+  body.mode-present .cta-row {
     margin-top: 56px; display: flex; gap: 32px;
   }
-  .cta-btn {
+  body.mode-present .cta-btn {
     display: inline-flex; align-items: center; justify-content: center;
     min-width: 420px; height: 96px; padding: 0 40px;
     border-radius: 18px; text-decoration: none;
@@ -208,65 +218,79 @@
     font-size: 34px; font-weight: 800;
     transition: transform .15s ease, box-shadow .15s ease;
   }
-  .cta-btn.primary {
+  body.mode-present .cta-btn.primary {
     background: linear-gradient(135deg, var(--gold), var(--gold-bright));
     color: var(--bg);
     box-shadow: 0 12px 40px rgba(212,160,23,.35);
   }
-  .cta-btn.secondary {
+  body.mode-present .cta-btn.secondary {
     background: transparent;
     border: 2px solid var(--gold-bright);
     color: var(--gold-bright);
   }
-  .cta-btn:hover { transform: translateY(-3px); }
-  .join-box {
+  body.mode-present .cta-btn:hover { transform: translateY(-3px); }
+  body.mode-present .join-box {
     margin-top: 48px; max-width: 1100px;
     padding: 40px 48px;
     background: rgba(18,42,74,.7);
     border: 1px dashed rgba(245,200,76,.45);
     border-radius: 20px;
   }
-  .join-box p { font-size: 30px; line-height: 1.55; color: var(--muted); }
-  .join-box strong { color: var(--gold-bright); }
-  .checklist {
+  body.mode-present .join-box p { font-size: 30px; line-height: 1.55; color: var(--muted); }
+  body.mode-present .join-box strong { color: var(--gold-bright); }
+  body.mode-present .join-steps {
+    margin-top: 28px; list-style: none;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  body.mode-present .join-steps li {
+    font-size: 28px; color: var(--muted);
+    padding-left: 40px; position: relative;
+  }
+  body.mode-present .join-steps li::before {
+    content: attr(data-n);
+    position: absolute; left: 0; top: 0;
+    color: var(--gold-bright); font-family: Outfit, sans-serif; font-weight: 800;
+  }
+  body.mode-present .checklist {
     margin-top: 36px; list-style: none;
     display: grid; grid-template-columns: 1fr 1fr; gap: 18px 36px;
   }
-  .checklist li {
+  body.mode-present .checklist li {
     font-size: 28px; font-weight: 600; line-height: 1.4;
     padding: 20px 24px 20px 64px;
     background: rgba(18,42,74,.55);
     border-radius: 14px; position: relative;
   }
-  .checklist li::before {
+  body.mode-present .checklist li::before {
     content: "✓";
     position: absolute; left: 22px; top: 50%; transform: translateY(-50%);
     color: var(--gold-bright); font-size: 28px; font-weight: 800;
   }
-  .poll-hint, .prompt-hint {
+  body.mode-present .poll-hint, body.mode-present .prompt-hint {
     margin-top: auto;
-    padding: 20px 28px;
+    margin-bottom: 8px;
+    padding: 16px 24px;
     border-radius: 14px;
     background: rgba(212,160,23,.1);
     border: 1px solid rgba(245,200,76,.3);
-    font-size: 24px; color: var(--gold-bright);
+    font-size: 22px; color: var(--gold-bright);
     max-width: 900px;
   }
-  .big-quote {
+  body.mode-present .big-quote {
     margin-top: 40px;
     font-size: 44px; font-weight: 800; line-height: 1.4;
     color: var(--white); max-width: 1500px;
   }
-  .big-quote em { font-style: normal; color: var(--gold-bright); }
-  .cover-logo {
+  body.mode-present .big-quote em { font-style: normal; color: var(--gold-bright); }
+  body.mode-present .cover-logo {
     font-family: Outfit, sans-serif;
     font-size: 28px; font-weight: 800; letter-spacing: .08em;
     color: var(--gold-bright); margin-bottom: 48px;
   }
-  .cover-sub {
+  body.mode-present .cover-sub {
     margin-top: 36px; font-size: 28px; color: var(--muted);
   }
-  .tag-pill {
+  body.mode-present .tag-pill {
     display: inline-block;
     margin-top: 40px;
     padding: 10px 20px;
@@ -276,6 +300,421 @@
     color: var(--cyan);
     font-size: 22px; font-weight: 700;
   }
+  /* Present poll interactive */
+  body.mode-present .poll-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    margin-top: 36px; margin-bottom: 12px;
+  }
+  body.mode-present .poll-opt {
+    text-align: left; cursor: pointer;
+    background: rgba(18,42,74,.72);
+    border: 1px solid rgba(245,200,76,.22);
+    border-radius: 20px;
+    padding: 32px 28px 28px;
+    color: inherit; font: inherit;
+    transition: border-color .15s, background .15s, transform .12s;
+  }
+  body.mode-present .poll-opt:hover { border-color: rgba(245,200,76,.55); transform: translateY(-2px); }
+  body.mode-present .poll-opt.selected {
+    border-color: var(--gold-bright);
+    background: rgba(212,160,23,.18);
+    box-shadow: 0 0 0 2px rgba(245,200,76,.25);
+  }
+  body.mode-present .poll-opt h3 {
+    font-family: Outfit, "Noto Sans HK", sans-serif;
+    font-size: 30px; font-weight: 800; color: var(--gold-bright);
+    margin-bottom: 10px;
+  }
+  body.mode-present .poll-opt p { font-size: 24px; line-height: 1.45; color: var(--muted); }
+  body.mode-present .poll-bar-wrap {
+    margin-top: 14px; height: 10px; border-radius: 5px;
+    background: rgba(255,255,255,.08); overflow: hidden;
+  }
+  body.mode-present .poll-bar {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+    border-radius: 5px; transition: width .35s ease;
+  }
+  body.mode-present .poll-count {
+    margin-top: 8px; font-size: 16px; color: var(--muted); font-family: Outfit, sans-serif;
+  }
+  body.mode-present .preview-label {
+    font-size: 18px; color: var(--cyan); margin-top: 8px; font-weight: 700;
+  }
+  body.mode-present .interactive-panel { margin-top: 28px; max-width: 720px; }
+  body.mode-present .interactive-panel textarea,
+  body.mode-present .interactive-panel input[type="text"] {
+    width: 100%; min-height: 72px; padding: 18px 22px;
+    border-radius: 14px; border: 1px solid rgba(245,200,76,.35);
+    background: rgba(18,42,74,.85); color: var(--white);
+    font-family: inherit; font-size: 24px; resize: vertical;
+  }
+  body.mode-present .interactive-panel .row {
+    display: flex; gap: 16px; margin-top: 16px; align-items: center;
+  }
+  body.mode-present .action-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 14px 28px; border-radius: 12px; border: none; cursor: pointer;
+    font-family: Outfit, "Noto Sans HK", sans-serif;
+    font-size: 22px; font-weight: 800;
+    background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+    color: var(--bg);
+  }
+  body.mode-present .action-btn.ghost {
+    background: transparent; border: 2px solid var(--gold-bright); color: var(--gold-bright);
+  }
+  body.mode-present .copy-btn-wrap { margin-top: 24px; }
+
+  /* ========== VIEW (mobile-first audience) ========== */
+  body.mode-view {
+    background: var(--bg);
+    overflow: hidden;
+  }
+  body.mode-view .viewport {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    background: var(--bg);
+  }
+  body.mode-view .stage {
+    flex: 1; width: 100%; min-height: 0;
+    position: relative;
+    transform: none !important;
+    background: linear-gradient(180deg, #0B1F3A 0%, #0A1830 60%, #0E2747 100%);
+    overflow: hidden;
+    box-shadow: none;
+  }
+  body.mode-view .stage::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 90% 40% at 50% -5%, rgba(212,160,23,.14), transparent 50%);
+    pointer-events: none;
+  }
+  body.mode-view .slide {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column;
+    padding: calc(20px + var(--safe-top)) 20px 16px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+  }
+  body.mode-view .slide.active { display: flex; }
+  body.mode-view .present-only { display: none !important; }
+  body.mode-view .footer { display: none !important; }
+  body.mode-view .nav {
+    flex-shrink: 0;
+    position: relative; left: auto; right: auto; bottom: auto;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px;
+    padding: 12px 16px calc(12px + var(--safe-bottom));
+    background: rgba(5,13,24,.95);
+    border-top: 1px solid rgba(245,200,76,.2);
+    z-index: 40;
+  }
+  body.mode-view .nav .brand-nav {
+    font-family: Outfit, sans-serif;
+    font-size: 13px; font-weight: 700; color: var(--gold);
+    min-width: 72px;
+  }
+  body.mode-view .nav .nav-controls {
+    display: flex; gap: 10px; align-items: center;
+  }
+  body.mode-view .nav button {
+    min-width: 48px; height: 44px; padding: 0 14px;
+    border: 1px solid rgba(245,200,76,.4);
+    background: rgba(18,42,74,.9);
+    color: var(--gold-bright);
+    font-family: Outfit, sans-serif; font-size: 18px; font-weight: 700;
+    border-radius: 12px; cursor: pointer;
+  }
+  body.mode-view .nav .page-label {
+    font-family: Outfit, sans-serif;
+    font-size: 14px; color: var(--muted); min-width: 56px; text-align: center;
+  }
+  body.mode-view .mode-toggle {
+    display: block;
+    text-align: center;
+    font-size: 12px; color: var(--muted); text-decoration: none;
+    padding: 4px 0 0;
+    opacity: .7;
+  }
+  body.mode-view .eyebrow {
+    font-family: Outfit, "Noto Sans HK", sans-serif;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--gold-bright);
+    margin-bottom: 10px;
+  }
+  body.mode-view h1 {
+    font-family: Outfit, "Noto Sans HK", sans-serif;
+    font-size: clamp(28px, 8vw, 36px); font-weight: 800; line-height: 1.25;
+  }
+  body.mode-view h1 .gold { color: var(--gold-bright); }
+  body.mode-view h2 {
+    font-family: Outfit, "Noto Sans HK", sans-serif;
+    font-size: clamp(24px, 7vw, 32px); font-weight: 800; line-height: 1.3;
+  }
+  body.mode-view .lead {
+    margin-top: 14px;
+    font-size: 16px; font-weight: 500; line-height: 1.55;
+    color: var(--muted);
+  }
+  body.mode-view .accent-bar {
+    width: 56px; height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+    border-radius: 2px;
+    margin: 14px 0 6px;
+  }
+  body.mode-view .grid-2,
+  body.mode-view .grid-3,
+  body.mode-view .grid-4 {
+    display: flex; flex-direction: column; gap: 12px; margin-top: 18px;
+  }
+  body.mode-view .card {
+    background: rgba(18,42,74,.85);
+    border: 1px solid rgba(245,200,76,.22);
+    border-radius: 16px;
+    padding: 16px 16px;
+  }
+  body.mode-view .card h3 {
+    font-family: Outfit, "Noto Sans HK", sans-serif;
+    font-size: 18px; font-weight: 800; color: var(--gold-bright);
+    margin-bottom: 8px;
+  }
+  body.mode-view .card p, body.mode-view .card li {
+    font-size: 15px; line-height: 1.5; color: var(--muted);
+  }
+  body.mode-view .card ul { list-style: none; }
+  body.mode-view .card li { padding: 4px 0 4px 20px; position: relative; }
+  body.mode-view .card li::before {
+    content: ""; position: absolute; left: 0; top: 11px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold);
+  }
+  body.mode-view .pain-list {
+    margin-top: 16px; list-style: none;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  body.mode-view .pain-list li {
+    font-size: 16px; font-weight: 700; line-height: 1.4;
+    padding: 14px 14px 14px 48px;
+    background: rgba(18,42,74,.7);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 12px 12px 0;
+    position: relative;
+  }
+  body.mode-view .pain-list li .num {
+    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+    font-family: Outfit, sans-serif; font-size: 14px; color: var(--gold-bright);
+  }
+  body.mode-view .vs-row {
+    display: flex; flex-direction: column; gap: 12px; margin-top: 18px;
+  }
+  body.mode-view .vs-badge {
+    align-self: center;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+    color: var(--bg); font-family: Outfit, sans-serif;
+    font-size: 14px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  body.mode-view .vs-card.bad { border-color: rgba(232,93,93,.35); }
+  body.mode-view .vs-card.bad h3 { color: #FF9B9B; }
+  body.mode-view .vs-card.good { border-color: rgba(61,220,151,.35); }
+  body.mode-view .vs-card.good h3 { color: var(--ok); }
+  body.mode-view .level-card .lvl {
+    font-family: Outfit, sans-serif; font-size: 12px; letter-spacing: .1em;
+    color: var(--cyan); margin-bottom: 6px; font-weight: 700;
+  }
+  body.mode-view .price-wrap {
+    margin-top: 20px; display: flex; flex-direction: column; gap: 16px;
+  }
+  body.mode-view .price-old {
+    font-family: Outfit, sans-serif;
+    font-size: 20px; color: var(--muted); text-decoration: line-through;
+  }
+  body.mode-view .price-new {
+    font-family: Outfit, sans-serif;
+    font-size: 48px; font-weight: 800; color: var(--gold-bright); line-height: 1;
+  }
+  body.mode-view .price-note {
+    margin-top: 16px; font-size: 15px; color: var(--muted); line-height: 1.5;
+  }
+  body.mode-view .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  body.mode-view .badge {
+    padding: 8px 14px; border-radius: 999px;
+    border: 1px solid rgba(245,200,76,.4);
+    background: rgba(212,160,23,.12);
+    font-size: 13px; font-weight: 700; color: var(--gold-bright);
+  }
+  body.mode-view .fit-grid .card.no { border-color: rgba(168,192,216,.25); }
+  body.mode-view .fit-grid .card.no h3 { color: var(--muted); }
+  body.mode-view .cta-row {
+    margin-top: 24px; display: flex; flex-direction: column; gap: 12px;
+  }
+  body.mode-view .cta-btn {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; min-height: 56px; padding: 14px 20px;
+    border-radius: 14px; text-decoration: none;
+    font-family: Outfit, "Noto Sans HK", sans-serif;
+    font-size: 18px; font-weight: 800;
+  }
+  body.mode-view .cta-btn.primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+    color: var(--bg);
+    box-shadow: 0 8px 24px rgba(212,160,23,.3);
+  }
+  body.mode-view .cta-btn.secondary {
+    background: transparent;
+    border: 2px solid var(--gold-bright);
+    color: var(--gold-bright);
+  }
+  body.mode-view .join-box {
+    margin-top: 18px;
+    padding: 18px 16px;
+    background: rgba(18,42,74,.75);
+    border: 1px dashed rgba(245,200,76,.45);
+    border-radius: 16px;
+  }
+  body.mode-view .join-box p { font-size: 16px; line-height: 1.55; color: var(--muted); }
+  body.mode-view .join-box strong { color: var(--gold-bright); }
+  body.mode-view .join-steps {
+    margin-top: 16px; list-style: none;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  body.mode-view .join-steps li {
+    font-size: 15px; color: var(--muted); line-height: 1.45;
+    padding: 12px 12px 12px 36px; position: relative;
+    background: rgba(18,42,74,.55); border-radius: 12px;
+  }
+  body.mode-view .join-steps li::before {
+    content: attr(data-n);
+    position: absolute; left: 12px; top: 12px;
+    color: var(--gold-bright); font-family: Outfit, sans-serif; font-weight: 800;
+  }
+  body.mode-view .checklist {
+    margin-top: 16px; list-style: none;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  body.mode-view .checklist li {
+    font-size: 15px; font-weight: 600; line-height: 1.4;
+    padding: 14px 14px 14px 44px;
+    background: rgba(18,42,74,.7);
+    border-radius: 12px; position: relative;
+  }
+  body.mode-view .checklist li::before {
+    content: "✓";
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    color: var(--gold-bright); font-size: 18px; font-weight: 800;
+  }
+  body.mode-view .poll-hint, body.mode-view .prompt-hint {
+    display: none;
+  }
+  body.mode-view .big-quote {
+    margin-top: 16px;
+    font-size: 20px; font-weight: 800; line-height: 1.45;
+    color: var(--white);
+  }
+  body.mode-view .big-quote em { font-style: normal; color: var(--gold-bright); }
+  body.mode-view .cover-logo {
+    font-family: Outfit, sans-serif;
+    font-size: 14px; font-weight: 800; letter-spacing: .08em;
+    color: var(--gold-bright); margin-bottom: 20px;
+  }
+  body.mode-view .cover-sub {
+    margin-top: 16px; font-size: 15px; color: var(--muted); line-height: 1.5;
+  }
+  body.mode-view .tag-pill {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: rgba(126,200,227,.12);
+    border: 1px solid rgba(126,200,227,.35);
+    color: var(--cyan);
+    font-size: 13px; font-weight: 700;
+  }
+  /* View poll: vertical full-width */
+  body.mode-view .poll-grid {
+    display: flex; flex-direction: column; gap: 12px;
+    margin-top: 18px; margin-bottom: 8px;
+  }
+  body.mode-view .poll-opt {
+    width: 100%; text-align: left; cursor: pointer;
+    background: rgba(18,42,74,.85);
+    border: 2px solid rgba(245,200,76,.28);
+    border-radius: 16px;
+    padding: 16px 16px 14px;
+    color: inherit; font: inherit;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body.mode-view .poll-opt.selected {
+    border-color: var(--gold-bright);
+    background: rgba(212,160,23,.2);
+  }
+  body.mode-view .poll-opt h3 {
+    font-family: Outfit, "Noto Sans HK", sans-serif;
+    font-size: 18px; font-weight: 800; color: var(--gold-bright);
+    margin-bottom: 6px;
+  }
+  body.mode-view .poll-opt p { font-size: 15px; line-height: 1.4; color: var(--muted); }
+  body.mode-view .poll-bar-wrap {
+    margin-top: 10px; height: 8px; border-radius: 4px;
+    background: rgba(255,255,255,.08); overflow: hidden;
+  }
+  body.mode-view .poll-bar {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+    border-radius: 4px; transition: width .35s ease;
+  }
+  body.mode-view .poll-count {
+    margin-top: 6px; font-size: 12px; color: var(--muted); font-family: Outfit, sans-serif;
+  }
+  body.mode-view .preview-label {
+    font-size: 13px; color: var(--cyan); margin-top: 4px; font-weight: 700;
+  }
+  body.mode-view .interactive-panel { margin-top: 16px; }
+  body.mode-view .interactive-panel textarea,
+  body.mode-view .interactive-panel input[type="text"] {
+    width: 100%; min-height: 88px; padding: 14px 14px;
+    border-radius: 14px; border: 1px solid rgba(245,200,76,.4);
+    background: rgba(18,42,74,.9); color: var(--white);
+    font-family: inherit; font-size: 16px; resize: vertical;
+  }
+  body.mode-view .interactive-panel .row {
+    display: flex; gap: 10px; margin-top: 12px; align-items: stretch;
+  }
+  body.mode-view .action-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    flex: 1; min-height: 48px; padding: 12px 18px; border-radius: 12px;
+    border: none; cursor: pointer;
+    font-family: Outfit, "Noto Sans HK", sans-serif;
+    font-size: 16px; font-weight: 800;
+    background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+    color: var(--bg);
+  }
+  body.mode-view .action-btn.ghost {
+    background: transparent; border: 2px solid var(--gold-bright); color: var(--gold-bright);
+  }
+  body.mode-view .copy-btn-wrap { margin-top: 16px; }
+  body.mode-view .copy-btn-wrap .action-btn { width: 100%; }
+
+  /* Toast */
+  .toast {
+    position: fixed; left: 50%; bottom: 88px; transform: translateX(-50%) translateY(20px);
+    max-width: min(90vw, 420px);
+    padding: 14px 20px; border-radius: 12px;
+    background: rgba(18,42,74,.96);
+    border: 1px solid rgba(245,200,76,.45);
+    color: var(--gold-bright);
+    font-size: 15px; font-weight: 700; text-align: center;
+    z-index: 100; opacity: 0; pointer-events: none;
+    transition: opacity .25s, transform .25s;
+    box-shadow: 0 12px 40px rgba(0,0,0,.4);
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  body.mode-present .toast { bottom: 100px; }
 </style>
 </head>
 <body>
@@ -303,7 +742,11 @@
         大屏轉頁，你部手機<strong>自動跟住</strong>。<br/>
         投票、提問、帶走 Prompt——全部喺手機完成。</p>
       </div>
-      <p class="lead" style="margin-top:36px">而家唔使真開 Pulse Room——本檔 HTML 可本地翻頁預覽；<br/>之後丟 <code style="color:var(--gold-bright)">slides.json</code> 入 room 即可 live。</p>
+      <ul class="join-steps">
+        <li data-n="1">打開本頁連結（或掃 QR）</li>
+        <li data-n="2">跟住大屏轉頁——唔使自己搵頁</li>
+        <li data-n="3">投票／輸入／一鍵複製——撳掣就得</li>
+      </ul>
       <div class="footer"><span class="brand">@StartFree</span><span>02 / 16</span></div>
     </section>
 
@@ -312,7 +755,7 @@
       <p class="eyebrow">開場鉤｜夢想</p>
       <h2>再唔使凡事親力親為</h2>
       <div class="accent-bar"></div>
-      <p class="big-quote">把時間<em>搶返嚟</em>——擴生意、開第二收入、<br/>而唔係日日被內容同客資追住跑。</p>
+      <p class="big-quote">把時間<em>搶返嚟</em>——擴生意、開第二收入、<br class="present-only"/>而唔係日日被內容同客資追住跑。</p>
       <p class="lead">老闆最貴嘅資源唔係錢——係你嘅注意力。</p>
       <div class="footer"><span class="brand">@StartFree</span><span>03 / 16</span></div>
     </section>
@@ -336,13 +779,34 @@
       <p class="eyebrow">現場投票</p>
       <h2>你而家最痛係？</h2>
       <div class="accent-bar"></div>
-      <div class="grid-2" style="margin-top:48px">
-        <div class="card"><h3>A · 時間</h3><p>日日親力親為，擴唔到</p></div>
-        <div class="card"><h3>B · 內容</h3><p>要產、要回覆、永遠追唔切</p></div>
-        <div class="card"><h3>C · 請人</h3><p>貴、慢、風險高</p></div>
-        <div class="card"><h3>D · 唔知點開始</h3><p>識聽 AI，唔知點落地</p></div>
+      <p class="preview-label">預覽投票（本機統計，唔上 server）</p>
+      <div class="poll-grid" id="pollPain" role="group" aria-label="你而家最痛係？">
+        <button type="button" class="poll-opt" data-opt="A">
+          <h3>A · 時間</h3>
+          <p>日日親力親為，擴唔到</p>
+          <div class="poll-bar-wrap"><div class="poll-bar" data-bar="A"></div></div>
+          <div class="poll-count" data-count="A">0 票</div>
+        </button>
+        <button type="button" class="poll-opt" data-opt="B">
+          <h3>B · 內容</h3>
+          <p>要產、要回覆、永遠追唔切</p>
+          <div class="poll-bar-wrap"><div class="poll-bar" data-bar="B"></div></div>
+          <div class="poll-count" data-count="B">0 票</div>
+        </button>
+        <button type="button" class="poll-opt" data-opt="C">
+          <h3>C · 請人</h3>
+          <p>貴、慢、風險高</p>
+          <div class="poll-bar-wrap"><div class="poll-bar" data-bar="C"></div></div>
+          <div class="poll-count" data-count="C">0 票</div>
+        </button>
+        <button type="button" class="poll-opt" data-opt="D">
+          <h3>D · 唔知點開始</h3>
+          <p>識聽 AI，唔知點落地</p>
+          <div class="poll-bar-wrap"><div class="poll-bar" data-bar="D"></div></div>
+          <div class="poll-count" data-count="D">0 票</div>
+        </button>
       </div>
-      <p class="poll-hint">📱 手機 overlay：單選投票（結果即時上大屏）</p>
+      <p class="poll-hint present-only">📱 手機可點選；大屏預留 overlay 位（結果即時上屏）</p>
       <div class="footer"><span class="brand">@StartFree</span><span>05 / 16</span></div>
     </section>
 
@@ -467,7 +931,7 @@
         <div class="card"><h3>每月直播</h3><p>按月更新玩法，跟住市場節奏。</p></div>
         <div class="card"><h3>2 × 1 對 1</h3><p>各 30 分鐘——對準你嘅業務卡點。</p></div>
       </div>
-      <p class="lead" style="margin-top:40px">定位：由 0 到 1 建立第二收入曲線 · 香港線上 · 零基礎都得</p>
+      <p class="lead" style="margin-top:24px">定位：由 0 到 1 建立第二收入曲線 · 香港線上 · 零基礎都得</p>
       <div class="footer"><span class="brand">@StartFree</span><span>10 / 16</span></div>
     </section>
 
@@ -493,17 +957,24 @@
       <div class="footer"><span class="brand">@StartFree</span><span>11 / 16</span></div>
     </section>
 
-    <!-- 12 Poll / Prompt 90 days -->
+    <!-- 12 Prompt 90 days -->
     <section class="slide" data-page="12" data-id="prompt-90d">
       <p class="eyebrow">現場互動</p>
       <h2>90 日最想改善 1 件事？</h2>
       <div class="accent-bar"></div>
       <p class="lead">用一句寫低——內容產能／客資跟進／自動化／第二收入……</p>
-      <div class="grid-2" style="margin-top:40px">
+      <div class="grid-2 present-only" style="margin-top:28px">
         <div class="card"><h3>手機 Prompt</h3><p>提交一句目標；主持批准後可上大屏（匿名或暱稱）。</p></div>
         <div class="card"><h3>點解要寫</h3><p>目標清晰，訓練營先對得準你嘅業務，唔係空學工具。</p></div>
       </div>
-      <p class="prompt-hint">📱 audience overlay：文字 Prompt（placeholder：我 90 日最想…）</p>
+      <div class="interactive-panel">
+        <p class="preview-label">預覽輸入（本機；live 要審批）</p>
+        <textarea id="prompt90" rows="3" placeholder="我 90 日最想……（一句就得）"></textarea>
+        <div class="row">
+          <button type="button" class="action-btn" id="btnPrompt90">提交</button>
+        </div>
+      </div>
+      <p class="prompt-hint present-only">📱 audience overlay：文字 Prompt</p>
       <div class="footer"><span class="brand">@StartFree</span><span>12 / 16</span></div>
     </section>
 
@@ -548,7 +1019,10 @@
         <li>列出 3 個可自動化流程</li>
         <li>約自己 7 日後 review</li>
       </ul>
-      <p class="poll-hint">📱 手機一鍵複製完整 Prompt（audienceElements · copy）</p>
+      <div class="copy-btn-wrap">
+        <button type="button" class="action-btn" id="btnCopyChecklist">一鍵複製 Prompt</button>
+      </div>
+      <p class="poll-hint present-only">📱 手機一鍵複製完整 Prompt</p>
       <div class="footer"><span class="brand">@StartFree</span><span>14 / 16</span></div>
     </section>
 
@@ -562,7 +1036,7 @@
         <a class="cta-btn primary" href="https://startfree.io/" target="_blank" rel="noopener">立即加入訓練營</a>
         <a class="cta-btn secondary" href="https://www.youtube.com/@StartFree" target="_blank" rel="noopener">訂閱 StartFree</a>
       </div>
-      <p class="lead" style="margin-top:40px;font-size:24px">導師：Angus Hung／StartFree · YouTube @StartFree</p>
+      <p class="lead" style="margin-top:20px;font-size:inherit">導師：Angus Hung／StartFree · YouTube @StartFree</p>
       <div class="footer"><span class="brand">@StartFree</span><span>15 / 16</span></div>
     </section>
 
@@ -572,50 +1046,225 @@
       <h2>有問題？而家問。</h2>
       <div class="accent-bar"></div>
       <p class="big-quote">把時間搶返嚟——<em>裝系統，用得住。</em></p>
-      <div class="cta-row" style="margin-top:40px">
-        <a class="cta-btn primary" href="https://startfree.io/" target="_blank" rel="noopener">startfree.io</a>
-        <a class="cta-btn secondary" href="https://www.youtube.com/@StartFree" target="_blank" rel="noopener">YouTube @StartFree</a>
+      <div class="interactive-panel">
+        <p class="preview-label">現場問題（預覽；live 要審批）</p>
+        <textarea id="promptQa" rows="3" placeholder="我想問……"></textarea>
+        <div class="row">
+          <button type="button" class="action-btn" id="btnPromptQa">提交</button>
+        </div>
       </div>
-      <p class="prompt-hint">📱 可開 Prompt overlay 收集現場問題（審批後上大屏）</p>
+      <div class="cta-row" style="margin-top:20px">
+        <a class="cta-btn primary" href="https://startfree.io/" target="_blank" rel="noopener">立即加入訓練營</a>
+        <a class="cta-btn secondary" href="https://www.youtube.com/@StartFree" target="_blank" rel="noopener">訂閱 StartFree</a>
+      </div>
       <div class="footer"><span class="brand">@StartFree</span><span>16 / 16</span></div>
     </section>
 
-    <div class="nav">
-      <button type="button" id="btnPrev" aria-label="上一頁">←</button>
-      <span class="page-label" id="pageLabel">1 / 16</span>
-      <button type="button" id="btnNext" aria-label="下一頁">→</button>
-    </div>
+    <nav class="nav present-only" id="navPresent" aria-label="翻頁">
+      <button type="button" class="btn-prev" aria-label="上一頁">←</button>
+      <span class="page-label page-label-el">1 / 16</span>
+      <button type="button" class="btn-next" aria-label="下一頁">→</button>
+    </nav>
+    <a class="mode-toggle present-only" id="modeTogglePresent" href="#">手機模式</a>
   </div>
+
+  <nav class="nav view-only" id="navView" aria-label="翻頁">
+    <span class="brand-nav">@StartFree</span>
+    <div class="nav-controls">
+      <button type="button" class="btn-prev" aria-label="上一頁">←</button>
+      <span class="page-label page-label-el">1 / 16</span>
+      <button type="button" class="btn-next" aria-label="下一頁">→</button>
+    </div>
+    <a class="mode-toggle" id="modeToggleView" href="#">大屏模式</a>
+  </nav>
 </div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 (function () {
+  const CHECKLIST_PROMPT = [
+    "【本週 AI 作業系統啟動 Checklist｜StartFree AI Slasher】",
+    "",
+    "1) 定 1 個你每週重複做、最想交俾 AI 嘅任務（寫清楚：輸入→輸出）。",
+    "2) 寫低你嘅老闆語氣 5 句（點樣講、點樣唔講）。",
+    "3) 喺日曆鎖 1 個固定時段（最少 45 分鐘）做 AI 練習。",
+    "4) 開一個「AI 作業」資料夾，放模板、對話、成品。",
+    "5) 列出 3 個可自動化流程（通知／收集／跟進）。",
+    "6) 約自己 7 日後 review：邊項用得住？邊項要改？",
+    "",
+    "一句目標：我唔係追工具，我係裝一套每週用得住嘅老闆 AI 作業系統。",
+    "CTA：https://startfree.io/ ｜ YouTube @StartFree"
+  ].join("\n");
+
   const slides = Array.from(document.querySelectorAll('.slide'));
   const total = slides.length;
   let i = 0;
-  const label = document.getElementById('pageLabel');
+  const labels = Array.from(document.querySelectorAll('.page-label-el'));
   const stage = document.getElementById('stage');
+  const modeToggles = [
+    document.getElementById('modeTogglePresent'),
+    document.getElementById('modeToggleView')
+  ].filter(Boolean);
+  const toastEl = document.getElementById('toast');
+  let toastTimer = null;
+
+  function getForcedMode() {
+    const m = new URLSearchParams(location.search).get('mode');
+    if (m === 'view' || m === 'present') return m;
+    return null;
+  }
+
+  function resolveMode() {
+    const forced = getForcedMode();
+    if (forced) return forced;
+    return window.matchMedia('(max-width: 820px)').matches ? 'view' : 'present';
+  }
+
+  function applyMode() {
+    const mode = resolveMode();
+    document.body.classList.remove('mode-present', 'mode-view');
+    document.body.classList.add('mode-' + mode);
+    modeToggles.forEach((el) => {
+      if (mode === 'view') {
+        el.textContent = '大屏模式';
+        el.href = setModeInUrl('present');
+      } else {
+        el.textContent = '手機模式';
+        el.href = setModeInUrl('view');
+      }
+    });
+    fit();
+  }
+
+  function setModeInUrl(mode) {
+    const u = new URL(location.href);
+    u.searchParams.set('mode', mode);
+    return u.pathname + u.search + u.hash;
+  }
 
   function fit() {
+    if (!document.body.classList.contains('mode-present')) {
+      stage.style.transform = '';
+      return;
+    }
     const vw = window.innerWidth;
     const vh = window.innerHeight;
     const s = Math.min(vw / 1920, vh / 1080);
     stage.style.transform = 'scale(' + s + ')';
   }
+
   function show(n) {
     i = Math.max(0, Math.min(total - 1, n));
     slides.forEach((el, idx) => el.classList.toggle('active', idx === i));
-    label.textContent = (i + 1) + ' / ' + total;
+    labels.forEach((el) => { el.textContent = (i + 1) + ' / ' + total; });
+    const active = slides[i];
+    if (active) active.scrollTop = 0;
   }
-  document.getElementById('btnPrev').addEventListener('click', () => show(i - 1));
-  document.getElementById('btnNext').addEventListener('click', () => show(i + 1));
+
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2800);
+  }
+
+  document.querySelectorAll('.btn-prev').forEach((b) => b.addEventListener('click', () => show(i - 1)));
+  document.querySelectorAll('.btn-next').forEach((b) => b.addEventListener('click', () => show(i + 1)));
+
   window.addEventListener('keydown', (e) => {
+    const tag = (e.target && e.target.tagName) || '';
+    if (tag === 'TEXTAREA' || tag === 'INPUT') return;
     if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); show(i + 1); }
     if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(i - 1); }
     if (e.key === 'Home') show(0);
     if (e.key === 'End') show(total - 1);
   });
-  window.addEventListener('resize', fit);
-  fit();
+
+  /* Swipe (view) */
+  let touchX = null;
+  stage.addEventListener('touchstart', (e) => {
+    if (!e.changedTouches || !e.changedTouches[0]) return;
+    touchX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  stage.addEventListener('touchend', (e) => {
+    if (touchX == null || !e.changedTouches || !e.changedTouches[0]) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    touchX = null;
+    if (Math.abs(dx) < 56) return;
+    if (dx < 0) show(i + 1);
+    else show(i - 1);
+  }, { passive: true });
+
+  /* Poll preview */
+  const votes = { A: 0, B: 0, C: 0, D: 0 };
+  let myVote = null;
+  const pollRoot = document.getElementById('pollPain');
+  function renderPoll() {
+    const sum = votes.A + votes.B + votes.C + votes.D;
+    ['A','B','C','D'].forEach((k) => {
+      const pct = sum ? Math.round((votes[k] / sum) * 100) : 0;
+      const bar = pollRoot.querySelector('[data-bar="' + k + '"]');
+      const cnt = pollRoot.querySelector('[data-count="' + k + '"]');
+      if (bar) bar.style.width = pct + '%';
+      if (cnt) cnt.textContent = votes[k] + ' 票 · ' + pct + '%';
+    });
+    pollRoot.querySelectorAll('.poll-opt').forEach((btn) => {
+      btn.classList.toggle('selected', btn.getAttribute('data-opt') === myVote);
+    });
+  }
+  pollRoot.addEventListener('click', (e) => {
+    const btn = e.target.closest('.poll-opt');
+    if (!btn) return;
+    const opt = btn.getAttribute('data-opt');
+    if (myVote === opt) return;
+    if (myVote) votes[myVote] = Math.max(0, votes[myVote] - 1);
+    myVote = opt;
+    votes[opt] += 1;
+    renderPoll();
+  });
+  renderPoll();
+
+  /* Prompt submit */
+  function wirePrompt(inputId, btnId) {
+    const input = document.getElementById(inputId);
+    const btn = document.getElementById(btnId);
+    if (!input || !btn) return;
+    btn.addEventListener('click', () => {
+      const v = (input.value || '').trim();
+      if (!v) { toast('請先輸入一句'); return; }
+      toast('已記錄（預覽；live 要審批）');
+      input.value = '';
+    });
+  }
+  wirePrompt('prompt90', 'btnPrompt90');
+  wirePrompt('promptQa', 'btnPromptQa');
+
+  /* Checklist copy */
+  document.getElementById('btnCopyChecklist').addEventListener('click', async () => {
+    const text = CHECKLIST_PROMPT;
+    try {
+      await navigator.clipboard.writeText(text);
+      toast('已複製 Checklist Prompt');
+    } catch (err) {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed'; ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        toast('已複製 Checklist Prompt');
+      } catch (e2) {
+        toast('複製失敗——請長按手動選取');
+      }
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (!getForcedMode()) applyMode();
+    else fit();
+  });
+  applyMode();
   show(0);
 })();
 </script>

@@ -1,9 +1,19 @@
 {
+  "modes": [
+    "present",
+    "view"
+  ],
+  "modesNote": "present = 大屏 1920×1080 scale-to-fit；view = 手機 full-bleed（?mode=view 或 max-width:820px）",
   "title": "AI Slasher 訓練營｜銷售互動 Deck",
   "brand": "StartFree",
   "locale": "zh-HK",
-  "stage": { "width": 1920, "height": 1080 },
-  "html": { "url": "index.html" },
+  "stage": {
+    "width": 1920,
+    "height": 1080
+  },
+  "html": {
+    "url": "index.html"
+  },
   "theme": {
     "bg": "#0B1F3A",
     "accent": "#D4A017",
@@ -11,18 +21,30 @@
     "text": "#FFFFFF",
     "muted": "#A8C0D8",
     "cyan": "#7EC8E3",
-    "fonts": ["Noto Sans HK", "Outfit"]
+    "fonts": [
+      "Noto Sans HK",
+      "Outfit"
+    ]
   },
   "cta": {
-    "sales": { "url": "https://startfree.io/", "label": "立即加入訓練營" },
-    "youtube": { "url": "https://www.youtube.com/@StartFree", "label": "訂閱 StartFree" }
+    "sales": {
+      "url": "https://startfree.io/",
+      "label": "立即加入訓練營"
+    },
+    "youtube": {
+      "url": "https://www.youtube.com/@StartFree",
+      "label": "訂閱 StartFree"
+    }
   },
   "slides": [
     {
       "id": "cover",
       "kind": "visual",
       "title": "封面：AI Slasher 訓練營",
-      "html": { "url": "index.html", "page": 1 },
+      "html": {
+        "url": "index.html",
+        "page": 1
+      },
       "overlays": [],
       "audienceElements": []
     },
@@ -30,12 +52,20 @@
       "id": "join",
       "kind": "visual",
       "title": "入場玩法：跟大屏",
-      "html": { "url": "index.html", "page": 2 },
+      "html": {
+        "url": "index.html",
+        "page": 2
+      },
       "overlays": [
         {
           "id": "join-overlay",
           "type": "join",
-          "frame": { "x": 55, "y": 28, "width": 38, "height": 48 },
+          "frame": {
+            "x": 55,
+            "y": 28,
+            "width": 38,
+            "height": 48
+          },
           "style": {
             "text": "#FFFFFF",
             "panel": "rgba(18,42,74,0.85)",
@@ -49,7 +79,10 @@
       "id": "dream",
       "kind": "visual",
       "title": "開場鉤｜夢想：把時間搶返嚟",
-      "html": { "url": "index.html", "page": 3 },
+      "html": {
+        "url": "index.html",
+        "page": 3
+      },
       "overlays": [],
       "audienceElements": []
     },
@@ -57,7 +90,10 @@
       "id": "pain",
       "kind": "visual",
       "title": "痛點：堆喺自己身上",
-      "html": { "url": "index.html", "page": 4 },
+      "html": {
+        "url": "index.html",
+        "page": 4
+      },
       "overlays": [],
       "audienceElements": []
     },
@@ -65,7 +101,10 @@
       "id": "poll-pain",
       "kind": "visual",
       "title": "Poll：你而家最痛係？",
-      "html": { "url": "index.html", "page": 5 },
+      "html": {
+        "url": "index.html",
+        "page": 5
+      },
       "overlays": [
         {
           "id": "poll-pain-overlay",
@@ -77,7 +116,12 @@
             "請人——貴、慢、風險高",
             "唔知點開始——識聽唔落地"
           ],
-          "frame": { "x": 8, "y": 62, "width": 55, "height": 28 },
+          "frame": {
+            "x": 8,
+            "y": 58,
+            "width": 55,
+            "height": 30
+          },
           "style": {
             "text": "#FFFFFF",
             "panel": "rgba(18,42,74,0.9)",
@@ -91,7 +135,10 @@
       "id": "know-vs-use",
       "kind": "visual",
       "title": "「識 AI」vs「用得住」",
-      "html": { "url": "index.html", "page": 6 },
+      "html": {
+        "url": "index.html",
+        "page": 6
+      },
       "overlays": [],
       "audienceElements": []
     },
@@ -99,7 +146,10 @@
       "id": "solution",
       "kind": "visual",
       "title": "方案一句：老闆 AI／Grok 作業系統",
-      "html": { "url": "index.html", "page": 7 },
+      "html": {
+        "url": "index.html",
+        "page": 7
+      },
       "overlays": [],
       "audienceElements": []
     },
@@ -107,7 +157,10 @@
       "id": "levels-overview",
       "kind": "visual",
       "title": "三 Level 總覽",
-      "html": { "url": "index.html", "page": 8 },
+      "html": {
+        "url": "index.html",
+        "page": 8
+      },
       "overlays": [],
       "audienceElements": []
     },
@@ -115,7 +168,10 @@
       "id": "levels-detail",
       "kind": "visual",
       "title": "Level 細節卡",
-      "html": { "url": "index.html", "page": 9 },
+      "html": {
+        "url": "index.html",
+        "page": 9
+      },
       "overlays": [],
       "audienceElements": []
     },
@@ -123,7 +179,10 @@
       "id": "membership",
       "kind": "visual",
       "title": "會籍包含：社群／直播／諮詢",
-      "html": { "url": "index.html", "page": 10 },
+      "html": {
+        "url": "index.html",
+        "page": 10
+      },
       "overlays": [],
       "audienceElements": []
     },
@@ -131,7 +190,10 @@
       "id": "price",
       "kind": "visual",
       "title": "價格錨定 8800→4800",
-      "html": { "url": "index.html", "page": 11 },
+      "html": {
+        "url": "index.html",
+        "page": 11
+      },
       "overlays": [],
       "audienceElements": []
     },
@@ -139,14 +201,22 @@
       "id": "prompt-90d",
       "kind": "visual",
       "title": "Prompt：90 日最想改善 1 件事",
-      "html": { "url": "index.html", "page": 12 },
+      "html": {
+        "url": "index.html",
+        "page": 12
+      },
       "overlays": [
         {
           "id": "prompt-90d-overlay",
           "type": "prompt",
           "question": "90 日最想改善 1 件事？",
           "placeholder": "我 90 日最想……（一句就得）",
-          "frame": { "x": 10, "y": 58, "width": 50, "height": 28 },
+          "frame": {
+            "x": 10,
+            "y": 58,
+            "width": 50,
+            "height": 28
+          },
           "style": {
             "text": "#FFFFFF",
             "panel": "rgba(18,42,74,0.9)",
@@ -160,7 +230,10 @@
       "id": "fit",
       "kind": "visual",
       "title": "適合／唔適合（誠實邊界）",
-      "html": { "url": "index.html", "page": 13 },
+      "html": {
+        "url": "index.html",
+        "page": 13
+      },
       "overlays": [],
       "audienceElements": []
     },
@@ -168,7 +241,10 @@
       "id": "checklist",
       "kind": "visual",
       "title": "帶走：本週 AI 作業系統啟動 Checklist",
-      "html": { "url": "index.html", "page": 14 },
+      "html": {
+        "url": "index.html",
+        "page": 14
+      },
       "overlays": [],
       "audienceElements": [
         {
@@ -184,7 +260,10 @@
       "id": "cta",
       "kind": "visual",
       "title": "最終 CTA：報名 + YouTube",
-      "html": { "url": "index.html", "page": 15 },
+      "html": {
+        "url": "index.html",
+        "page": 15
+      },
       "overlays": [],
       "audienceElements": [
         {
@@ -209,14 +288,22 @@
       "id": "thanks",
       "kind": "visual",
       "title": "多謝／Q&A",
-      "html": { "url": "index.html", "page": 16 },
+      "html": {
+        "url": "index.html",
+        "page": 16
+      },
       "overlays": [
         {
           "id": "prompt-qa-overlay",
           "type": "prompt",
           "question": "現場問題（審批後上大屏）",
           "placeholder": "我想問……",
-          "frame": { "x": 10, "y": 62, "width": 48, "height": 26 },
+          "frame": {
+            "x": 10,
+            "y": 62,
+            "width": 48,
+            "height": 26
+          },
           "style": {
             "text": "#FFFFFF",
             "panel": "rgba(18,42,74,0.9)",
